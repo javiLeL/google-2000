@@ -10,7 +10,16 @@ import java.util.List;
 class Main{
     public static void main(String[] args) {
         // System.out.println(etiquetaLinkExtractor("mas resto del html <a href=\"uwu\"> hola </a> el resto del html XD mamon <a href=\"soy un link\"> link :D </a> no te lo vas a creer aqui ya mas WOOOO"));
-        etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).stream().forEach(System.out::println);
+        // etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).stream().forEach(System.out::println);
+        System.out.println(etiquetaLinkExtractor(Datos.htmlPrueva));
+
+        for(int i=0;i<etiquetaLinkExtractor(Datos.htmlPrueva).size();i++){
+            System.out.println(linkStractorElement(etiquetaLinkExtractor(Datos.htmlPrueva).get(i)));
+        }
+
+        
+        
+
     }
     /**
      * Metodo capaz de extraer el conjunto de etiquetas <a> ... </a> de un archivo html
@@ -24,14 +33,25 @@ class Main{
         while (html.indexOf("<a ", aux) != -1) {
             String a="";
             for(int i = html.indexOf("<a ", aux); i<html.indexOf("</a>", aux)+4;i++){
-               a += html.charAt(i);
+                a += html.charAt(i);
             }
             aux = html.indexOf("</a>", aux)+4;
             resultado.add(a);
         }
+
         return resultado;
     }
     
+    static String linkStractorElement(String elment){
+        String link = "";
+        if (elment.indexOf("href=\"")!=-1){
+            for(int i=elment.indexOf("href=\"", 0)+6;i<elment.indexOf("\"", elment.indexOf("href=\"", 0)+6);i++){
+                link += elment.charAt(i);
+            }
+        }
+        return link;
+    }
+
     /**
      * Metodo capaz de extrer un html de la red
      * @param urlString
