@@ -11,14 +11,19 @@ class Main{
     public static void main(String[] args) {
         // System.out.println(etiquetaLinkExtractor("mas resto del html <a href=\"uwu\"> hola </a> el resto del html XD mamon <a href=\"soy un link\"> link :D </a> no te lo vas a creer aqui ya mas WOOOO"));
         // etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).stream().forEach(System.out::println);
-        System.out.println(etiquetaLinkExtractor(Datos.htmlPrueva));
+        
+        /*System.out.println(etiquetaLinkExtractor(Datos.htmlPrueva));
 
         for(int i=0;i<etiquetaLinkExtractor(Datos.htmlPrueva).size();i++){
             System.out.println(linkStractorElement(etiquetaLinkExtractor(Datos.htmlPrueva).get(i)));
+        }*/
+        
+        for(int i=0;i<etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).size();i++){
+            String link;
+            if((link=linkStractorElement(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i)))!=null){
+                System.out.println(link);
+            }
         }
-
-        
-        
 
     }
     /**
@@ -41,14 +46,21 @@ class Main{
 
         return resultado;
     }
-    
+
+    /**
+     * Metodo capaz de extraer el link de un elemento <a href="link"> ... </a>
+     * @param elment
+     * @return
+     */
     static String linkStractorElement(String elment){
-        String link = "";
+        String link = null;
         if (elment.indexOf("href=\"")!=-1){
+            link = "";
             for(int i=elment.indexOf("href=\"", 0)+6;i<elment.indexOf("\"", elment.indexOf("href=\"", 0)+6);i++){
                 link += elment.charAt(i);
             }
         }
+        link = link.startsWith("http")?link:null;
         return link;
     }
 
