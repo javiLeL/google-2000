@@ -19,26 +19,25 @@ class Main{
         }*/
         
         // Extractor de links 
-        /*
+        
         for(int i=0;i<etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).size();i++){
-            String link, word = wordStractorElemet(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i));
+            String link, word = deleteEtiquetas(wordStractorElemet(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i)));
             if((link=linkStractorElement(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i)))!=null){
                 System.out.println(link+" </> "+word);
             }
         }
-        */
+        
 
         // Extractor de palabras
-        
+        /*
         for(int i=0;i<etiquetaLinkExtractor(Datos.htmlPrueva).size();i++){
-            String link, word = wordStractorElemet(etiquetaLinkExtractor(Datos.htmlPrueva).get(i));
+            String link, word = deleteEtiquetas(wordStractorElemet(etiquetaLinkExtractor(Datos.htmlPrueva).get(i)));
             if((link=linkStractorElement(etiquetaLinkExtractor(Datos.htmlPrueva).get(i)))!=null){
                 System.out.println(link +" </> "+ word);
             }
         }
+        */
         
-        
-
     }
     /**
      * Metodo capaz de extraer el conjunto de etiquetas <a> ... </a> de un archivo html
@@ -77,17 +76,23 @@ class Main{
         return palabra;
     }
 
-
+    /**
+     * Metodo capaz de eliminar
+     * @param text
+     * @return
+     */
     static String deleteEtiquetas(String text){
         String resultado="";
         boolean escribir = true;
         for(int i=0;i<text.length();i++){
-            escribir = text.indexOf("<")==0;
-            if (escribir) {
+            if (text.charAt(i)=='<') {
+                escribir = false;
+            }else if(text.charAt(i)=='>'){
+                escribir = true;
+            }
+
+            if (escribir && !(text.charAt(i)=='>')) {
                 resultado += text.charAt(i); 
-
-            }else{
-
             }
         }
         return resultado;
