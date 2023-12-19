@@ -18,12 +18,26 @@ class Main{
             System.out.println(linkStractorElement(etiquetaLinkExtractor(Datos.htmlPrueva).get(i)));
         }*/
         
+        // Extractor de links 
+        /*
         for(int i=0;i<etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).size();i++){
-            String link;
+            String link, word = wordStractorElemet(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i));
             if((link=linkStractorElement(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i)))!=null){
-                System.out.println(link);
+                System.out.println(link+" </> "+word);
             }
         }
+        */
+
+        // Extractor de palabras
+        
+        for(int i=0;i<etiquetaLinkExtractor(Datos.htmlPrueva).size();i++){
+            String link, word = wordStractorElemet(etiquetaLinkExtractor(Datos.htmlPrueva).get(i));
+            if((link=linkStractorElement(etiquetaLinkExtractor(Datos.htmlPrueva).get(i)))!=null){
+                System.out.println(link +" </> "+ word);
+            }
+        }
+        
+        
 
     }
     /**
@@ -48,18 +62,51 @@ class Main{
     }
 
     /**
-     * Metodo capaz de extraer el link de un elemento <a href="link"> ... </a>
-     * @param elment
+     * Metodo capaz de extraer una palabra de dentro de un html
+     * @param element
      * @return
      */
-    static String linkStractorElement(String elment){
-        String link = null;
-        if (elment.indexOf("href=\"")!=-1){
-            link = "";
-            for(int i=elment.indexOf("href=\"", 0)+6;i<elment.indexOf("\"", elment.indexOf("href=\"", 0)+6);i++){
-                link += elment.charAt(i);
+    static String wordStractorElemet(String element){
+        String palabra="";
+        if (element.indexOf("href=\"")!=-1){
+            palabra = "";
+            for(int i=element.indexOf(">")+1;i<element.indexOf("</a>");i++){
+                palabra += element.charAt(i);
             }
         }
+        return palabra;
+    }
+
+
+    static String deleteEtiquetas(String text){
+        String resultado="";
+        boolean escribir = true;
+        for(int i=0;i<text.length();i++){
+            escribir = text.indexOf("<")==0;
+            if (escribir) {
+                resultado += text.charAt(i); 
+
+            }else{
+
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Metodo capaz de extraer el link apartir de un elemento <a href="link"> ... </a>
+     * @param element
+     * @return
+     */
+    static String linkStractorElement(String element){
+        String link = null;
+        if (element.indexOf("href=\"")!=-1){
+            link = "";
+            for(int i=element.indexOf("href=\"", 0)+6;i<element.indexOf("\"", element.indexOf("href=\"", 0)+6);i++){
+                link += element.charAt(i);
+            }
+        }
+        // Esto es ajustable para poder especificar el tipo como http o https u en este caso ambas
         link = link.startsWith("http")?link:null;
         return link;
     }
