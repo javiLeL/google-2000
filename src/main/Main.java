@@ -19,11 +19,11 @@ class Main{
         }*/
         
         // Extractor de links 
-        
-        for(int i=0;i<etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).size();i++){
-            String link, word = deleteEtiquetas(wordStractorElemet(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i)));
-            if((link=linkStractorElement(etiquetaLinkExtractor(htmlExtractor("https://es.wikipedia.org/wiki/Wiki")).get(i)))!=null){
-                System.out.println(link+" </> "+word);
+        String enlace = "https://en.wikipedia.org/wiki/Box-drawing_character";
+        for(int i=0;i<etiquetaLinkExtractor(htmlExtractor(enlace)).size();i++){
+            String link, word = deleteEtiquetas(wordStractorElemet(etiquetaLinkExtractor(htmlExtractor(enlace)).get(i)));
+            if((link=linkStractorElement(etiquetaLinkExtractor(htmlExtractor(enlace)).get(i)))!=null && word!=null){
+                System.out.println(link+" --> "+word);
             }
         }
         
@@ -95,6 +95,7 @@ class Main{
                 resultado += text.charAt(i); 
             }
         }
+        resultado = resultado.equals("") ? null:resultado;
         return resultado;
     }
 
