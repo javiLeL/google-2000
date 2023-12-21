@@ -16,9 +16,9 @@ public class Hilos implements Runnable{
         }
     }
     private String readSeed(){
-        return main2.Main.readSeed();
+        return main.Main.readSeed();
     }
     private void writeLog(String url){
-        main2.Main.writeLog(url+"\n", "hilo"+Thread.currentThread().getName());
+        main.Main.writeLog(url+"\n", "hilo"+Thread.currentThread().getName());
     }
 }
