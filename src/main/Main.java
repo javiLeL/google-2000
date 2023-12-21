@@ -10,9 +10,6 @@ import Hilos.Hilos;
 public class Main {
     private static int ultimoSeed = 0;
     public static void main(String[] args) {
-<<<<<<< HEAD
-        System.out.println(deleteEtiquetas(""));
-=======
         Thread[] threads = new Thread[3];
 
         for(int i=0;i<threads.length;i++){
@@ -20,7 +17,6 @@ public class Main {
             threads[i].setName((i+1)+"");
             threads[i].start();
         }
->>>>>>> Fase_1
     }
     public static synchronized String readSeed(){
         String resultado=null;
@@ -31,7 +27,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Error no existe el archivo seed");
         }
-        System.out.println(Thread.currentThread().getName() +"//"+ ultimoSeed);
+        // System.out.println(Thread.currentThread().getName() +"//"+ ultimoSeed);
         ultimoSeed = resultado!=null?ultimoSeed+1:ultimoSeed;
         return resultado;
     }
