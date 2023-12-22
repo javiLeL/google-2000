@@ -6,17 +6,20 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 import Hilos.Hilos;
+import Hilos.UrlTools;
 
 public class Main {
     private static int ultimoSeed = 0;
     public static void main(String[] args) {
         Thread[] threads = new Thread[3];
-
+        /*
         for(int i=0;i<threads.length;i++){
             threads[i] = new Thread(new Hilos());
             threads[i].setName((i+1)+"");
             threads[i].start();
-        }
+        }*/
+        
+        System.out.println(UrlTools.deleteWords("hola que tal algunas voy a decir algunas Preposiciones son a ante "));
     }
     public static synchronized String readSeed(){
         String resultado=null;

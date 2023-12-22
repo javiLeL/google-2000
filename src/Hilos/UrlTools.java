@@ -2,6 +2,7 @@ package Hilos;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -40,7 +41,30 @@ public class UrlTools {
             }
         }
     }
-
+    /**
+     * Metodo capaz de borrar las palabras de un texto 
+     * Estas palabras se encuentran dentro del archivo "words-ignore.txt"
+     * @return
+     */
+    public static String deleteWords(String text){
+        text = " "+text+" ";
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("words-ignore.txt"))){
+            String palabraEliminar;
+            while ((palabraEliminar=bufferedReader.readLine())!=null) {
+                if(!palabraEliminar.startsWith("#")){
+                    text = text.replace(" "+palabraEliminar+" ", " ");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return text;
+    }
+    /**
+     * Metodo que elimina las etiquetas de un html 
+     * @param text
+     * @return
+     */
     static String deleteEtiquetas(String text){
         String resultado="";
         boolean escribir = true;
@@ -50,7 +74,6 @@ public class UrlTools {
             }else if(text.charAt(i)=='>'){
                 escribir = true;
             }
-            
             if (escribir && !(text.charAt(i)=='>')) {
                 resultado += text.charAt(i); 
             }
