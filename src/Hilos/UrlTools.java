@@ -40,4 +40,22 @@ public class UrlTools {
             }
         }
     }
+
+    static String deleteEtiquetas(String text){
+        String resultado="";
+        boolean escribir = true;
+        for(int i=0;i<text.length();i++){
+            if (text.charAt(i)=='<') {
+                escribir = false;
+            }else if(text.charAt(i)=='>'){
+                escribir = true;
+            }
+            
+            if (escribir && !(text.charAt(i)=='>')) {
+                resultado += text.charAt(i); 
+            }
+        }
+        resultado = resultado.equals("") ? null:resultado;
+        return resultado;
+    }
 }
