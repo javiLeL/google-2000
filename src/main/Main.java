@@ -18,7 +18,13 @@ public class Main {
             threads[i].setName((i+1)+"");
             // threads[i].start();
         }
-        System.out.println("\n"+UrlTools.deleteSignos("hola, que tal estas?"));
+        try {
+            System.out.println(UrlTools.deleteWords(UrlTools.deleteSignos(UrlTools.deleteEtiquetas(UrlTools.htmlExtractor("https://wiki.archlinux.org/")))));
+            // System.out.println());
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     public static synchronized String readSeed(){
         String resultado=null;
