@@ -1,4 +1,4 @@
-package antiguaVersion.Hilos;
+package Hilos;
 
 public class Hilos implements Runnable{
     @Override
@@ -16,9 +16,9 @@ public class Hilos implements Runnable{
         }
     }
     private String readSeed(){
-        return antiguaVersion.main2.Main.readSeed();
+        return metodosUtiles.main2.Main.readSeed();
     }
     private void writeLog(String url){
-        antiguaVersion.main2.Main.writeLog(url+"\n", "hilo"+Thread.currentThread().getName());
+        metodosUtiles.main2.Main.writeLog(url+"\n", "hilo"+Thread.currentThread().getName());
     }
 }

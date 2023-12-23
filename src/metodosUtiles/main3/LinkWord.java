@@ -1,4 +1,4 @@
-package antiguaVersion.main;
+package metodosUtiles.main3;
 
 public class LinkWord {
     private String link, word;

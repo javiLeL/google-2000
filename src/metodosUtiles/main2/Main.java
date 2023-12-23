@@ -1,11 +1,11 @@
-package antiguaVersion.main2;
+package metodosUtiles.main2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import antiguaVersion.Hilos.Hilos;
+import Hilos.Hilos;
 
 public class Main {
     private static int ultimoSeed = 0;
