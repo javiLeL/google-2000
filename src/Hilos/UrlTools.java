@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class UrlTools {
+    private static final char[] PUNTUACION = {',', '.', ';', '!', '?', '¡', '¿'};
     /**
      * Metodo que extrae el html fuente apartir de un url
      * @param urlString
@@ -70,7 +71,7 @@ public class UrlTools {
      * @param text
      * @return
      */
-    static String deleteEtiquetas(String text){
+    public static String deleteEtiquetas(String text){
         String resultado="";
         boolean escribir = true;
         for(int i=0;i<text.length();i++){
@@ -85,5 +86,16 @@ public class UrlTools {
         }
         resultado = resultado.equals("") ? null:resultado;
         return resultado;
+    }
+    /**
+     * Metodo capaz de eliminar los signos de PUNTUACION como ",",".",";",...
+     * @param texto
+     * @return
+     */
+    public static String deleteSignos(String texto){
+        for (char caracterEliminar : PUNTUACION) {
+            texto = texto.replace(String.valueOf(caracterEliminar), "");
+        }
+        return texto;
     }
 }

@@ -18,9 +18,7 @@ public class Main {
             threads[i].setName((i+1)+"");
             // threads[i].start();
         }
-        
-        System.out.println(UrlTools.deleteWords("En esta parte de la ciudad se encuentran los restos de un antiguo barrio chino."));
-        // System.out.println("lorem  ipsum   dolor \n sit.");
+        System.out.println("\n"+UrlTools.deleteSignos("hola, que tal estas?"));
     }
     public static synchronized String readSeed(){
         String resultado=null;
