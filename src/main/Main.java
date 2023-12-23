@@ -19,7 +19,7 @@ public class Main {
             // threads[i].start();
         }
         
-        System.out.println(UrlTools.deleteWords("hola que tal algunas voy a decir algunas Preposiciones son a ante "));
+        System.out.println(UrlTools.deleteWords("En esta parte de la ciudad se encuentran los restos de un antiguo barrio chino."));
         // System.out.println("lorem  ipsum   dolor \n sit.");
     }
     public static synchronized String readSeed(){

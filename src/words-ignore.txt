@@ -1,0 +1,86 @@
+# Preposiciones
+a
+ante
+bajo
+cabe
+con
+contra
+de
+desde
+durante
+en
+entre
+hacia
+hasta
+mediante
+para
+por
+según
+sin
+so
+sobre
+tras
+versus
+vía
+# Articulos
+el 
+lo
+la
+los
+las
+un
+una
+unos
+unas
+# Pronombres
+## Primera Persona
+### Singular
+Yo
+me
+mí
+conmigo
+### Plural
+Nosotros
+nos
+nosotras
+## Segunda Persona
+### Singular
+tú
+te
+ti
+contigo
+usted
+vos
+### Plural
+vosotros 
+vosotras
+os
+ustedes
+## Tercera Persona
+### Singular
+él
+#### lo
+le
+se
+sí
+consigo
+ella
+la
+ello
+#### lo
+### Plural
+ellos
+ellas
+los
+las
+les
+se
+sí
+#### consigo
+# Pronombres Demostrativos
+## Singular
+este
+esta
+## Plural
+estos
+estas

@@ -47,12 +47,12 @@ public class UrlTools {
      * @return
      */
     public static String deleteWords(String text){
-        text = " "+text+" ";
+        text = " "+text.toLowerCase()+" ";
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("words-ignore.txt"))){
             String palabraEliminar;
             while ((palabraEliminar=bufferedReader.readLine())!=null) {
                 if(!palabraEliminar.startsWith("#")){
-                    text = text.replace(" "+palabraEliminar.trim()+" ", " ");
+                    text = text.replace(" "+palabraEliminar.toLowerCase().trim()+" ", " ");
                 }
             }
             // Modifica los caracteres en blanco por espacios
