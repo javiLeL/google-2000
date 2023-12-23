@@ -6,11 +6,12 @@ public class Hilos implements Runnable{
         String url;
 
         while((url=readSeed())!=null){
-            // System.out.println("El hilo "+Thread.currentThread().getName()+" Analiza el url: " + url);
             try {
-                Thread.sleep((int)(Math.random()*2000+1000));
+                System.out.println("El hilo "+Thread.currentThread().getName()+" Inicio el analisis de: "+url);
+                UrlTools.writeHtml(url);
+                System.out.println("El hilo "+Thread.currentThread().getName()+" Termino el analisis de: "+url);
             } catch (Exception e) {
-                System.out.println(e);
+                writeLog(url+"\t[Error]");
             }
             writeLog(url);
         }
