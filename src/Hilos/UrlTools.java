@@ -52,9 +52,13 @@ public class UrlTools {
             String palabraEliminar;
             while ((palabraEliminar=bufferedReader.readLine())!=null) {
                 if(!palabraEliminar.startsWith("#")){
-                    text = text.replace(" "+palabraEliminar+" ", " ");
+                    text = text.replace(" "+palabraEliminar.trim()+" ", " ");
                 }
             }
+            // Modifica los caracteres en blanco por espacios
+            text = text.replaceAll("\\s+", " ");
+            // Elimina los caracteres en blanco del principio y del final
+            text = text.trim();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -62,6 +66,7 @@ public class UrlTools {
     }
     /**
      * Metodo que elimina las etiquetas de un html 
+     * Presenta algunos problemas con las etiquetas de stile y de script
      * @param text
      * @return
      */
