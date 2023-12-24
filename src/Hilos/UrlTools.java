@@ -7,10 +7,15 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UrlTools {
     private static final char[] PUNTUACION = {',', '.', ':', ';', '!', '?', '¡', '¿'};
-    private static final String[] ETIQUETA_IGNORE = {"style", "script"};
+    private static final String[] ETIQUETA_IGNORE = {"style", "script"}, ETIQUETA_LINK = {"a", "link"};
     /**
      * Metodo que extrae el html fuente apartir de un url
      * @param urlString
@@ -122,5 +127,57 @@ public class UrlTools {
             texto = texto.replace(String.valueOf(caracterEliminar), " ");
         }
         return texto;
+    }
+    /**
+     * Metodo capaz de extraer el conjunto de etiquetas <x x="x"> o <x x="x"/> de un archivo html
+     * esta etiqueta debe de guardar por lo menos un atributos sino se saltara
+     * @param html
+     * @return
+     */
+    private static List<String> etiquetaExtractor(String etiqueta, String html){
+        List<String> resultado = new ArrayList<>();
+        int aux=0;
+        while (html.indexOf("<"+etiqueta+" ", aux) != -1) {
+            String etiquetaEncontrada="";
+            for(int i = html.indexOf("<"+etiqueta+" ", aux); i<html.indexOf(">", aux)+1;i++){
+                etiquetaEncontrada += html.charAt(i);
+            }
+            aux = html.indexOf(">", aux)+1;
+            if (!etiquetaEncontrada.equals("")) {
+                resultado.add(etiquetaEncontrada);   
+            }
+        }
+        return resultado;
+    }
+        /**
+     * Metodo capaz de extraer el link apartir de un elemento "x" el cual posea un atributo href
+     * ejemplo: <a href="link">
+     * @param element
+     * @return
+     */
+    private static String linkExtractorElement(String element){
+        String link = null;
+        if (element.indexOf("href=\"")!=-1){
+            link = "";
+            for(int i=element.indexOf("href=\"", 0)+6;i<element.indexOf("\"", element.indexOf("href=\"", 0)+6);i++){
+                link += element.charAt(i);
+            }
+        }
+        // Esto es ajustable para poder especificar el tipo como http o https u en este caso ambas
+        // link = link.startsWith(url+"/")?link:null;
+        return link;
+    }
+    /**
+     * Metodo capaz de extraer los links de un html
+     * @param html
+     * @return
+     */
+    public static Set<String> linksExtractor(String html){
+        Set<String> resutado = new HashSet<>();
+        for (String etiquetaLink : ETIQUETA_LINK) {
+            resutado.addAll(etiquetaExtractor(etiquetaLink, html));
+        }
+        resutado = resutado.stream().map(UrlTools::linkExtractorElement).collect(Collectors.toSet());
+        return resutado;
     }
 }

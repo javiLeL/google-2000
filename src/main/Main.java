@@ -19,10 +19,8 @@ public class Main {
             // threads[i].start();
         }
         try {
-            System.out.println(UrlTools.deleteWords(UrlTools.deleteSignos(UrlTools.deleteEtiquetas(UrlTools.htmlExtractor("https://wiki.archlinux.org/")))));
-            // System.out.println());
+            UrlTools.linksExtractor(UrlTools.htmlExtractor("https://wiki.archlinux.org/")).stream().forEach(System.out::print);;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
