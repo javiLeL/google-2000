@@ -22,7 +22,8 @@ Posteriormente guardan este archivo html en un fichero (para que otro hilo pueda
 
 Para poder extraer todas las palabras de un html es necesario eliminar todas las etiquetas es decir desde el caracter `<` hasta el caracter `>` no es necesario hacer ningun calculo mas pues `html` no permite guardar estos caracteres dentro del codigo para escribirlo hay que hacerlo de forma diferente:
 
-| Caracter  | Caracter en HTML  | 
+| Caracter  | Caracter en HTML  |
+| --------- | ----------------- |
 | `<`       | `&lt`             |
 | `>`       | `&gt`             |
 
