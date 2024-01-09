@@ -123,4 +123,7 @@ public class UrlTools {
         }
         return texto;
     }
+    public static String[] procesadorPalabras(String texto){
+        return  UrlTools.deleteWords(UrlTools.deleteSignos(UrlTools.deleteEtiquetas(texto))).split(" ");
+    }
 }
