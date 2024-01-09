@@ -27,7 +27,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Error no existe el archivo seed");
         }
-        System.out.println(Thread.currentThread().getName() +"//"+ ultimoSeed);
+        // System.out.println(Thread.currentThread().getName() +"//"+ ultimoSeed);
         ultimoSeed = resultado!=null?ultimoSeed+1:ultimoSeed;
         return resultado;
     }
