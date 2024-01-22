@@ -19,7 +19,7 @@ public class Main {
             // threads[i].start();
         }
         try {
-            UrlTools.linksExtractor(UrlTools.htmlExtractor("https://wiki.archlinux.org/")).stream().forEach(System.out::print);;
+            UrlTools.linksExtractor(UrlTools.htmlExtractor("https://wiki.archlinux.org/")).stream().forEach(System.out::println);;
         } catch (Exception e) {
             e.printStackTrace();
         }
