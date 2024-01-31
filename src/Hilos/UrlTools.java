@@ -123,6 +123,11 @@ public class UrlTools {
         }
         return texto;
     }
+    /**
+     * Procesa las palbras de un texto devolviendolas en una array
+     * @param texto
+     * @return
+     */
     public static String[] procesadorPalabras(String texto){
         return  UrlTools.deleteWords(UrlTools.deleteSignos(UrlTools.deleteEtiquetas(texto))).split(" ");
     }
